@@ -85,6 +85,11 @@ function portal() {
         net.ipv6.conf.default.disable_ipv6=1 \
         net.ipv6.conf.all.disable_ipv6=1 >/dev/null
 
+    # Create a fresh apt archive.
+    if [ -d /var/lib/apt/lists ] ; then
+        rm -rf /var/lib/apt/lists/
+        apt-get update
+    fi
 }
 
 # Run the portal() function.
