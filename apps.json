@@ -4,6 +4,22 @@
    "description" : "Official apps for Portal cloud servers (BETA).",
    "apps" : [
       {
+         "id" : "groovebasin",
+         "release" : 0.1,
+         "memory" : 384,
+         "base" : "ubuntu14lts",
+         "title" : "Groovebasin",
+         "paths" : [
+            { "uri" : "/music/" }
+         ],
+         "ports" : [
+            { "protocol" : "tcp", "port" : 6600 }
+         ],
+         "description" : "Groove Basin is a music player server with a web-based user interface inspired by Amarok 1.4.",
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/groovebasin/latest.png",
+         "vendor_data" : "#!/bin/bash\nwget https://raw.githubusercontent.com/portalplatform/apps/master/groovebasin/latest.sh && bash -x ./latest.sh\n"
+      },
+      {
          "id" : "kanboard",
          "release" : 0.1,
          "memory" : 256,
