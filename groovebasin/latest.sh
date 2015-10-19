@@ -28,6 +28,7 @@ server {
         proxy_set_header Connection "upgrade";
         proxy_set_header Host \$host;
         proxy_redirect / $PUBLIC_URI_WITHSLASH;
+        proxy_buffering off;
         proxy_pass http://127.0.0.1:16242/;
     }
 }

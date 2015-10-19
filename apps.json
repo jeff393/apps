@@ -4,6 +4,19 @@
    "description" : "Official apps for Portal cloud servers (BETA).",
    "apps" : [
       {
+         "id" : "wordpress",
+         "release" : 0.2,
+         "memory" : 256,
+         "base" : "ubuntu14lts",
+         "title" : "WordPress",
+         "paths" : [
+            { "uri" : "/" }
+         ],
+         "description" : "WordPress is web software you can use to create a beautiful website, blog, or app.",
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/wordpress/latest.png",
+         "vendor_data" : "#!/bin/bash\nwget https://raw.githubusercontent.com/portalplatform/apps/master/wordpress/latest.sh && bash -x ./latest.sh\n"
+      },
+      {
          "id" : "groovebasin",
          "release" : 0.1,
          "memory" : 384,
