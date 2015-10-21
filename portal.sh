@@ -12,6 +12,8 @@
 #       $GATEWAY               | "172.17.123.1"
 #       $PRIVATE_URI           | "/cloud/a/inst_abc123/"
 #       $PRIVATE_URI_NOSLASH   | "/cloud/a/inst_abc123"
+#       $SHELL_URI             | "/cloud/shell/inst_abc123/"
+#       $SHELL_URI_NOSLASH     | "/cloud/shell/inst_abc123"
 #       $PUBLIC_URI            | "/blog/"
 #       $PUBLIC_URI_NOSLASH    | "/blog"
 #       $PUBLIC_URI_WITHSLASH  | "/blog/"
@@ -49,6 +51,16 @@ function portal() {
         PRIVATE_URI_NOSLASH="${PRIVATE_URI:0:-1}"
     fi
     export PRIVATE_URI_NOSLASH
+
+    # Shell URI (port 82 traffic)
+    export SHELL_URI="$(${CURL}paths/private/1/uri)"
+
+    # Shell URI without an ending slash.
+    SHELL_URI_NOSLASH="$SHELL_URI"
+    if [ "/" == "${SHELL_URI: -1}" ] ; then
+        SHELL_URI_NOSLASH="${SHELL_URI:0:-1}"
+    fi
+    export SHELL_URI_NOSLASH
 
     # Public URI (port 80 traffic)
     export PUBLIC_URI="$(${CURL}paths/public/0/uri)"
@@ -90,6 +102,22 @@ function portal() {
         rm -rf /var/lib/apt/lists/
         apt-get update
     fi
+
+    # Gotty shell on port 82.
+    wget -O /usr/local/bin/gotty https://portal.cloud/static/apps/gotty/gotty
+    chmod 755 /usr/local/bin/gotty
+    setcap cap_net_bind_service=+ep /usr/local/bin/gotty
+    cat <<UPSTART >/etc/init/shell.conf
+description "shell"
+start on runlevel [2345]
+stop on runlevel [!2345]
+respawn
+script
+    su -l $USERNAME -c "/usr/local/bin/gotty --title-format 'Shell - ({{ .Hostname }})' --root-url $SHELL_URI_NOSLASH --port 82 --reconnect --permit-write tmux new-session -A -s shell bash"
+end script
+UPSTART
+    start shell
+
 }
 
 # Run the portal() function.
