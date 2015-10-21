@@ -50,5 +50,7 @@ start syncthing
 sync
 
 # Wait until it's up
-until curl --output /dev/null --silent --fail "http://localhost:8384/"; do sleep 2 done
+until curl --output /dev/null --silent --fail "http://localhost:8384/"; do
+    sleep 2
+done
 
