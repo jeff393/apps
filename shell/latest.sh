@@ -9,11 +9,9 @@ export GOTTY_SESSION="shell"
 #
 # Gotty
 #
-if [ ! -e /usr/local/bin/gotty ] ; then
-    wget -O /usr/local/bin/gotty https://raw.githubusercontent.com/portalplatform/apps/master/gotty/gotty
-    chmod 755 /usr/local/bin/gotty
-    setcap cap_net_bind_service=+ep /usr/local/bin/gotty
-fi
+wget -O /usr/local/bin/gotty https://raw.githubusercontent.com/portalplatform/apps/master/gotty/gotty
+chmod 755 /usr/local/bin/gotty
+setcap cap_net_bind_service=+ep /usr/local/bin/gotty
 
 
 #

@@ -104,16 +104,16 @@ function portal() {
     fi
 
     # Gotty shell on port 82.
-    wget -O /usr/local/bin/gotty https://portal.cloud/static/apps/gotty/gotty
-    chmod 755 /usr/local/bin/gotty
-    setcap cap_net_bind_service=+ep /usr/local/bin/gotty
+    wget -O /usr/local/bin/shell https://portal.cloud/static/apps/gotty/gotty
+    chmod 755 /usr/local/bin/shell
+    setcap cap_net_bind_service=+ep /usr/local/bin/shell
     cat <<UPSTART >/etc/init/shell.conf
 description "shell"
 start on runlevel [2345]
 stop on runlevel [!2345]
 respawn
 script
-    su -l $USERNAME -c "/usr/local/bin/gotty --title-format 'Shell - ({{ .Hostname }})' --root-url $SHELL_URI_NOSLASH --port 82 --reconnect --permit-write tmux new-session -A -s shell bash"
+    su -l $USERNAME -c "/usr/local/bin/shell --title-format 'Shell - ({{ .Hostname }})' --root-url $SHELL_URI_NOSLASH --port 82 --reconnect --permit-write tmux new-session -A -s shell bash"
 end script
 UPSTART
     start shell
