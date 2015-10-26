@@ -1,0 +1,182 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+use CGI         qw( header param redirect url );
+use JSON::PP    qw( decode_json );
+use LWP::Simple qw( get );
+use File::Slurp qw( read_file );
+
+my $PATH_PREFIX = '/';
+
+if (-e "prefix.config") {
+    $PATH_PREFIX = read_file("prefix.config");
+    chomp $PATH_PREFIX;
+}
+
+render_index();
+
+exit;
+
+sub render_index {
+    my $path = url(-path => 1, -absolute => 1);
+    my $limit = 30;
+
+    my $offset = param('offset') || 0;
+    my $next_offset = $offset + 1;
+    my $cid = param('cid') || '';
+    my $name = param('name') || 'top';
+
+    # Fetch data.
+    my $url = "https://www.inside.com/api/v2/top.json?limit=$limit&offset=$offset&include_topics=true&vertical_app_cid=$cid";
+    if ($cid) {
+        $url =~ s/top\.json/updates.json/;
+    }
+    my $top = eval { decode_json(get($url)) };
+    my $apps = eval { decode_json(get("https://www.inside.com/api/v2/vertical_apps.json?limit=1000")) };
+
+    if (!defined $top->{updates} or !defined $apps->{vertical_apps}) {
+        render_error("Fetching updates failed: $@");
+        return;
+    }
+
+    # Render page.
+    render_header();
+    print qq(<a class="site-header">TL<span>;</span>DR<h2>$name</h2></a>);
+    print '<div class="sub-header">';
+    print qq(<a href="${PATH_PREFIX}updates">top</a>);
+    foreach my $app (@{$apps->{vertical_apps}}) {
+        print qq(<a href="${PATH_PREFIX}updates?cid=$app->{cid}&name=$app->{name}">$app->{name}</a>);
+    }
+    print '</div>';
+
+    print '<div class="container">';
+    my $i = $offset * $limit;
+    foreach my $update (@{$top->{updates}}) {
+        $i += 1;
+        my $display_text = $update->{entities}->{headline}->{display_text};
+        if (length $display_text > 100) {
+            $display_text = substr $display_text, 0, 100;
+            $display_text .= '...';
+        }
+        print <<UPDATE
+<a class="update" href="$update->{source_uri}"><span>$i.</span> <img src="$update->{slides}->[0]->{thumbnail_url}"> $display_text <small>($update->{sources}->[0]->{display_name})</small></a>
+UPDATE
+    }
+    print qq(<a class="update" href="${PATH_PREFIX}updates?cid=$cid&name=$name&offset=$next_offset"><span>&nbsp;</span><small>More</small></a>);
+    print '</div>';
+    render_footer();
+}
+
+sub render_error {
+    render_header();
+    print "<h1>$@</h1>";
+    render_footer();
+}
+
+sub render_header {
+    print header();
+    print <<'HEADER';
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TL;DR</title>
+    <style>
+        html, body {
+            margin: 0;
+        }
+
+        body {
+            background-color: #fff;
+            color: #333;
+            font-family: sans-serif;
+        }
+
+        h2 {
+            text-align: center;
+        }
+        a {
+            color: #333;
+        }
+        a:visited {
+            color: #333;
+        }
+        .site-header {
+            display: block;
+            text-align: center;
+            background-color: #2E2E30;
+            color: #fff;
+            padding: 15px 0;
+            font-size: 52px;
+            font-family: serif;
+        }
+        .site-header > h2 {
+            text-align: center;
+            color: #fff;
+            font-size: 26px;
+            margin: 2px 0;
+            text-transform: uppercase;
+            font-family: serif;
+        }
+        .sub-header {
+            padding: 20px;
+            background-color: #ebeff0;
+            overflow: hidden;
+            border-bottom: 1px solid #ddd;
+        }
+        .sub-header a {
+            color: #000;
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        .site-header > span {
+            color: orange;
+        }
+        .container {
+            background-color: #ebeff0;
+            padding: 15px;
+        }
+
+        .update {
+            display: block;
+            text-decoration: none;
+            padding: 25px 0;
+            font-size: 2em;
+        }
+        .update:visited {
+            color: #999;
+        }
+        .update > span {
+            display: inline-block;
+            width: 25px;
+            margin-right: 10px;
+            text-align: right;
+            color: #999;
+        }
+        .update > small {
+            color: #999;
+        }
+        .update > img {
+            max-height: 64px;
+            max-width: 64px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        @media (min-width: 1000px) {
+            .update {
+                padding: 10px 0;
+                font-size: 1.1em !important;
+            }
+        }
+    </style>
+</head>
+<body>
+HEADER
+}
+
+sub render_footer {
+    print <<FOOTER;
+</body>
+</html>
+FOOTER
+}
