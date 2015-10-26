@@ -4,6 +4,17 @@
    "description" : "Official apps for Portal cloud servers.",
    "apps" : [
       {
+         "id" : "tldr",
+         "release" : 0.4,
+         "memory" : 128,
+         "base" : "ubuntu14lts",
+         "title" : "TL;DR (Unofficial)",
+         "description" : "Coverage of the latest breaking news and the most fascinating content in the world. Human-curated and strategically summarized.",
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/tldr/latest.png",
+         "vendor_data" : "#!/bin/bash\nwget https://raw.githubusercontent.com/portalplatform/apps/master/tldr/latest.sh && bash -x ./latest.sh\n",
+         "homepage_url" : "https://inside.com/"
+      },
+      {
          "id" : "wordpress",
          "release" : 0.2,
          "memory" : 256,
