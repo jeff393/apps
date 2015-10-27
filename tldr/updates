@@ -149,9 +149,14 @@ sub render_header {
         .update:visited {
             color: #999;
         }
+        .update:hover {
+            background-color: #ddd;
+        }
         .update > span {
             display: inline-block;
-            width: 15px;
+            width: 20px;
+            height: 50px;
+            float: left;
             margin-right: 5px;
             text-align: right;
             color: #999;
@@ -160,7 +165,14 @@ sub render_header {
             color: #999;
         }
         .update > img {
-            display: none;
+            max-height: 48px;
+            max-width: 48px;
+            display: inline-block;
+            margin-top: 5px;
+            margin-right: 5px;
+            float: left;
+            vertical-align: middle;
+            border-radius: 2px;
         }
         \@media (min-width: 992px) {
             .update {
@@ -168,13 +180,14 @@ sub render_header {
                 padding: 15px 0;
             }
             .update > img {
-                max-height: 64px;
-                max-width: 64px;
+                max-height: 75px;
+                max-width: 75px;
+                float: none;
                 vertical-align: middle;
-                margin-right: 5px;
-                display: inline;
             }
             .update > span {
+                display: inline;
+                float: none;
                 width: 25px;
                 margin-right: 10px;
             }
