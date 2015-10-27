@@ -42,7 +42,7 @@ sub render_index {
 
     # Render page.
     render_header();
-    print qq(<a class="site-header">TL<span>;</span>DR<h2>$name</h2></a>);
+    print qq(<div class="site-header">TL<span>;</span>DR<h2>$name</h2></div>);
     print '<div class="sub-header">';
     print qq(<a href="${PATH_PREFIX}updates">top</a>);
     foreach my $app (@{$apps->{vertical_apps}}) {
@@ -50,13 +50,13 @@ sub render_index {
     }
     print '</div>';
 
-    print '<div class="container">';
+    print '<div class="container-fluid">';
     my $i = $offset * $limit;
     foreach my $update (@{$top->{updates}}) {
         $i += 1;
         my $display_text = $update->{entities}->{headline}->{display_text};
         if (length $display_text > 100) {
-            $display_text = substr $display_text, 0, 100;
+            $display_text = substr $display_text, 0, 90;
             $display_text .= '...';
         }
         print <<UPDATE
@@ -76,27 +76,31 @@ sub render_error {
 
 sub render_header {
     print header();
-    print <<'HEADER';
+    print <<HEADER;
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="${PATH_PREFIX}favicon.png">
+    <link rel="stylesheet" type="text/css" href="${PATH_PREFIX}bootstrap.min.css">
     <title>TL;DR</title>
     <style>
         html, body {
             margin: 0;
         }
-
         body {
             background-color: #fff;
             color: #333;
             font-family: sans-serif;
         }
-
         h2 {
             text-align: center;
         }
         a {
             color: #333;
+            text-decoration: none !important;
         }
         a:visited {
             color: #333;
@@ -132,24 +136,23 @@ sub render_header {
         .site-header > span {
             color: orange;
         }
-        .container {
+        .container-fluid {
             background-color: #ebeff0;
-            padding: 15px;
         }
 
         .update {
             display: block;
             text-decoration: none;
-            padding: 25px 0;
-            font-size: 2em;
+            padding: 5px 0;
+            font-size: 1em;
         }
         .update:visited {
             color: #999;
         }
         .update > span {
             display: inline-block;
-            width: 25px;
-            margin-right: 10px;
+            width: 15px;
+            margin-right: 5px;
             text-align: right;
             color: #999;
         }
@@ -157,15 +160,23 @@ sub render_header {
             color: #999;
         }
         .update > img {
-            max-height: 64px;
-            max-width: 64px;
-            margin-right: 5px;
-            vertical-align: middle;
+            display: none;
         }
-        @media (min-width: 1000px) {
+        \@media (min-width: 992px) {
             .update {
-                padding: 10px 0;
-                font-size: 1.1em !important;
+                font-size: 1.2em;
+                padding: 15px 0;
+            }
+            .update > img {
+                max-height: 64px;
+                max-width: 64px;
+                vertical-align: middle;
+                margin-right: 5px;
+                display: inline;
+            }
+            .update > span {
+                width: 25px;
+                margin-right: 10px;
             }
         }
     </style>

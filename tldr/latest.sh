@@ -10,8 +10,16 @@ apt-get install -y lighttpd libfile-slurp-perl libwww-perl
 curl --silent https://raw.githubusercontent.com/portalplatform/apps/master/tldr/updates >/var/www/updates
 echo "$PRIVATE_URI" >/var/www/prefix.config
 
+# Favicon
+curl --silent https://raw.githubusercontent.com/portalplatform/apps/master/tldr/latest.png >/var/www/favicon.png
+
+# Bootstrap
+curl --silent https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css >/var/www/bootstrap.min.css
+
+# Private port.
 perl -pi -e 's/= 80/= 81/' /etc/lighttpd/lighttpd.conf
 
+# CGI
 cat <<LIGHTTPD >/etc/lighttpd/conf-enabled/tldr.conf
 server.modules += ( "mod_cgi" )
 cgi.assign      = ( "/updates" => "/usr/bin/perl" )
