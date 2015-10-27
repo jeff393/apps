@@ -55,7 +55,7 @@ sub render_index {
     foreach my $update (@{$top->{updates}}) {
         $i += 1;
         my $display_text = $update->{entities}->{headline}->{display_text};
-        if (length $display_text > 100) {
+        if (length $display_text > 90) {
             $display_text = substr $display_text, 0, 90;
             $display_text .= '...';
         }
