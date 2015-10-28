@@ -10,10 +10,10 @@
          "base" : "ubuntu14lts",
          "title" : "Groovebasin",
          "paths" : [
-            { "uri" : "/music/" }
+            { "uri" : "/browserquest/" }
          ],
          "ports" : [
-            { "protocol" : "tcp", "port" : 6600 }
+            { "protocol" : "tcp", "port" : 8000 }
          ],
          "description" : "BrowserQuest is a HTML5/JavaScript multiplayer game experiment.",
          "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/groovebasin/latest.png",
