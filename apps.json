@@ -307,7 +307,7 @@
          "memory" : 384,
          "base" : "ubuntu14lts",
          "title" : "Email Server",
-         "description" : "A simple email server with SMTP and IMAP support, powered by Postfix and Dovecot. Compatible with mobile and desktop email clients.",
+         "description" : "A siasdfmple email server with SMTP and IMAP support, powered by Postfix and Dovecot. Compatible with mobile and desktop email clients.",
          "ports" : [
             { "protocol" : "tcp", "port" : 25 },
             { "protocol" : "tcp", "port" : 587 },
