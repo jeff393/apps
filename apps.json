@@ -4,13 +4,13 @@
    "description" : "Testing an app.",
    "apps" : [
       {
-         "id" : "tldr",
+         "id" : "browserquest",
          "release" : 0.4,
-         "memory" : 128,
+         "memory" : 256,
          "base" : "ubuntu14lts",
-         "title" : "TL;DR (Unofficial)",
+         "title" : "BrowserQuest (Unofficial)",
          "description" : "Coverage of the latest breaking news and the most fascinating content in the world. Human-curated and strategically summarized.",
-         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/tldr/latest.png",
+         "icon_url" : "https://raw.githubusercontent.com/jeff393/apps/master/browserquest/latest.png",
          "vendor_data" : "#!/bin/bash\nwget https://raw.githubusercontent.com/portalplatform/apps/master/tldr/latest.sh && bash -x ./latest.sh\n",
          "homepage_url" : "https://inside.com/"
       },
