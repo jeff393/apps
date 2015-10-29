@@ -14,4 +14,4 @@
          "vendor_data" : "#!/bin/bash\nwget https://raw.githubusercontent.com/portalplatform/apps/master/tldr/latest.sh && bash -x ./latest.sh\n",
          "homepage_url" : "http://browserquest.mozilla.org/"
       },
-},
+   },
