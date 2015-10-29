@@ -1,7 +1,7 @@
 {
-   "namespace" : "Jeff",
-   "title" : "Portal Apps",
-   "description" : "Official apps for Portal cloud servers.",
+   "namespace" : "jeff_apps",
+   "title" : "test Apps",
+   "description" : "Testing an app.",
    "apps" : [
       {
          "id" : "tldr",
