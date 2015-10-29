@@ -1,18 +1,321 @@
 {
-   "namespace" : "Jeff_Testing",
-   "title" : "Testing Apps",
-   "description" : "Jeff goofing around with apps.",
+   "namespace" : "portal_official",
+   "title" : "Portal Apps",
+   "description" : "Official apps for Portal cloud servers.",
    "apps" : [
       {
-         "id" : "BrowserQuest",
+         "id" : "tldr",
+         "release" : 0.4,
+         "memory" : 128,
+         "base" : "ubuntu14lts",
+         "title" : "TL;DR (Unofficial)",
+         "description" : "Coverage of the latest breaking news and the most fascinating content in the world. Human-curated and strategically summarized.",
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/tldr/latest.png",
+         "vendor_data" : "#!/bin/bash\nwget https://raw.githubusercontent.com/portalplatform/apps/master/tldr/latest.sh && bash -x ./latest.sh\n",
+         "homepage_url" : "https://inside.com/"
+      },
+      {
+         "id" : "wordpress",
+         "release" : 0.2,
+         "memory" : 256,
+         "base" : "ubuntu14lts",
+         "title" : "WordPress",
+         "paths" : [
+            { "uri" : "/" }
+         ],
+         "description" : "WordPress is web software you can use to create a beautiful website, blog, or app.",
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/wordpress/latest.png",
+         "vendor_data" : "#!/bin/bash\nwget https://raw.githubusercontent.com/portalplatform/apps/master/wordpress/latest.sh && bash -x ./latest.sh\n",
+         "homepage_url" : "https://wordpress.org/"
+      },
+      {
+         "id" : "groovebasin",
+         "release" : 0.1,
+         "memory" : 384,
+         "base" : "ubuntu14lts",
+         "title" : "Groovebasin",
+         "paths" : [
+            { "uri" : "/music/" }
+         ],
+         "ports" : [
+            { "protocol" : "tcp", "port" : 6600 }
+         ],
+         "description" : "Groove Basin is a music player server with a web-based user interface inspired by Amarok 1.4.",
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/groovebasin/latest.png",
+         "vendor_data" : "#!/bin/bash\nwget https://raw.githubusercontent.com/portalplatform/apps/master/groovebasin/latest.sh && bash -x ./latest.sh\n",
+         "homepage_url": "http://groovebasin.com/"
+      },
+      {
+         "id" : "kanboard",
+         "release" : 0.1,
+         "memory" : 256,
+         "base" : "ubuntu14lts",
+         "title" : "Kanboard",
+         "description" : "An open-source collaborative kanban board for organizing projects, working with your team, or maintaining your personal to-do list.",
+         "paths" : [
+            { "uri" : "/kanboard/" }
+         ],
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/kanboard/latest.png",
+         "vendor_data" : "#!/bin/bash\nwget https://raw.githubusercontent.com/portalplatform/apps/master/kanboard/latest.sh && bash -x ./latest.sh\n",
+         "homepage_url": "http://kanboard.net/"
+      },
+      {
+         "id" : "letschat",
+         "release" : 0.6,
+         "memory" : 768,
+         "base" : "ubuntu14lts",
+         "title" : "Let's Chat",
+         "description" : "A persistent messaging application designed for small, intimate teams.",
+         "paths" : [
+            { "uri" : "/letschat/" }
+         ],
+         "ports" : [
+            { "protocol" : "tcp", "port" : 5222 }
+         ],
+         "icon_url" : "https://portalplatform.net/static/apps/letschat/latest.png",
+         "vendor_data" : "#!/bin/bash\nwget https://portalplatform.net/static/apps/letschat/latest.sh && bash -x ./latest.sh\n",
+         "homepage_url" : "https://sdelements.github.io/lets-chat/"
+      },
+      {
+         "id" : "ytdl",
+         "release" : 0.2,
+         "memory" : 128,
+         "base" : "ubuntu14lts",
+         "title" : "YouTube-DL",
+         "description" : "A web interface to bookmark and get direct download links for YouTube videos.",
+         "icon_url" : "https://portalplatform.net/static/apps/ytdl/latest.png",
+         "vendor_data" : "#!/bin/bash\nwget https://portalplatform.net/static/apps/ytdl/latest.sh && bash -x ./latest.sh\n",
+         "homepage_url" : "https://rg3.github.io/youtube-dl/"
+      },
+      {
+         "id" : "seccam",
          "release" : 0.4,
          "memory" : 256,
          "base" : "ubuntu14lts",
-         "title" : "BrowserQuest",
-         "description" : "Multiplayer HTML5 game.",
-         "icon_url" : "https://raw.githubusercontent.com/jeff393/apps/master/browserquest/latest.png",
-         "vendor_data" : "",
-         "homepage_url" : "http://browserquest.mozilla.org/"
+         "title" : "IP Camera Viewer",
+         "description" : "An FTP server and web interface to automatically upload and quickly view images from your IP cameras.",
+         "ports" : [
+            { "protocol" : "tcp", "port" : 21 },
+            { "protocol" : "tcp", "port" : 20000 },
+            { "protocol" : "tcp", "port" : 20001 },
+            { "protocol" : "tcp", "port" : 20002 },
+            { "protocol" : "tcp", "port" : 20003 },
+            { "protocol" : "tcp", "port" : 20004 },
+            { "protocol" : "tcp", "port" : 20005 }
+         ],
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/seccam/latest.png",
+         "vendor_data" : "#!/bin/bash\nwget https://raw.githubusercontent.com/portalplatform/apps/master/seccam/latest.sh && bash -x ./latest.sh\n",
+         "homepage_url" : "https://github.com/portalplatform/apps/tree/master/seccam"
       },
+      {
+         "id" : "transmission",
+         "release" : 0.3,
+         "memory" : 384,
+         "base" : "ubuntu14lts",
+         "title" : "Transmission",
+         "description" : "A fast and easy BitTorrent client with a web interface.",
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/transmission/latest.png",
+         "vendor_data" : "#!/bin/bash\ncurl https://raw.githubusercontent.com/portalplatform/apps/master/transmission/latest.sh > install.sh && bash -x ./install.sh\n",
+         "homepage_url" : "http://www.transmissionbt.com/"
+      },
+      {
+         "id" : "roundcube",
+         "release" : 0.5,
+         "memory" : 256,
+         "base" : "ubuntu14lts",
+         "title" : "Roundcube Webmail",
+         "description" : "A webmail client with address book, folders, message search, and spell check.",
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/roundcube/latest.png",
+         "vendor_data" : "#!/bin/bash\ncurl https://raw.githubusercontent.com/portalplatform/apps/master/roundcube/latest.sh > install.sh && bash -x ./install.sh\n",
+         "homepage_url" : "https://roundcube.net/"
+      },
+      {
+         "id" : "crawl",
+         "release" : 1.7,
+         "memory" : 128,
+         "base" : "ubuntu14lts",
+         "title" : "Crawl",
+         "description" : "A roguelike adventure through dungeons filled with dangerous monsters in a quest to find the mystifyingly fabulous Orb of Zot.",
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/crawl/latest.png",
+         "vendor_data" : "#!/bin/bash\ncurl https://raw.githubusercontent.com/portalplatform/apps/master/crawl/latest.sh > install.sh && bash -x ./install.sh\n",
+         "homepage_url" : "https://github.com/crawl/crawl"
+      },
+      {
+         "id" : "searx",
+         "release" : 1.7,
+         "memory" : 384,
+         "base" : "ubuntu14lts",
+         "title" : "Searx",
+         "description" : "A privacy respecting metasearch engine.",
+         "paths" : [
+            { "uri" : "/searx/" }
+         ],
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/searx/latest.png",
+         "vendor_data" : "#!/bin/bash\ncurl https://raw.githubusercontent.com/portalplatform/apps/master/searx/latest.sh > install.sh && bash -x ./install.sh\n",
+         "homepage_url" : "https://searx.me/"
+      },
+      {
+         "id" : "weechat",
+         "release" : 1.7,
+         "memory" : 256,
+         "base" : "ubuntu14lts",
+         "title" : "WeeChat",
+         "description" : "A fast, light, web-based IRC (Internet Chat Relay) client.",
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/weechat/latest.png",
+         "vendor_data" : "#!/bin/bash\ncurl https://raw.githubusercontent.com/portalplatform/apps/master/weechat/latest.sh > install.sh && bash -x ./install.sh\n",
+         "homepage_url" : "https://weechat.org/"
+      },
+      {
+         "id" : "shell",
+         "release" : 1.7,
+         "memory" : 256,
+         "base" : "ubuntu14lts",
+         "title" : "Linux Shell",
+         "description" : "Ubuntu 14.04 LTS using Gotty to run a private shell over WebSockets.",
+         "ports" : [
+            { "protocol" : "tcp", "port" : 22 }
+         ],
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/shell/latest.png",
+         "vendor_data" : "#!/bin/bash\ncurl https://raw.githubusercontent.com/portalplatform/apps/master/shell/latest.sh > install.sh && bash -x ./install.sh\n",
+         "homepage_url" : "https://ubuntu.org/"
+      },
+      {
+         "id" : "tor",
+         "release" : 1.7,
+         "memory" : 256,
+         "base" : "ubuntu14lts",
+         "title" : "Tor",
+         "description" : "Tor relay helps Tor users defend against internet-traffic analysis.",
+         "ports" : [
+            { "protocol" : "tcp", "port" : 9001 }
+         ],
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/tor/latest.png",
+         "vendor_data" : "#!/bin/bash\ncurl https://raw.githubusercontent.com/portalplatform/apps/master/tor/latest.sh > install.sh && bash -x ./install.sh\n",
+         "homepage_url" : "https://torproject.org/"
+      },
+      {
+         "id" : "gogs",
+         "release" : 1.7,
+         "memory" : 512,
+         "base" : "ubuntu14lts",
+         "title" : "Gogs",
+         "description" : "Painless self-hosted Git service.",
+         "paths" : [
+            { "uri" : "/code/" }
+         ],
+         "ports" : [
+            { "protocol" : "tcp", "port" : 22 }
+         ],
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/gogs/latest.png",
+         "vendor_data" : "#!/bin/bash\ncurl https://raw.githubusercontent.com/portalplatform/apps/master/gogs/latest.sh > install.sh && bash -x ./install.sh\n",
+         "homepage_url" : "http://gogs.io/"
+      },
+      {
+         "id" : "syncthing",
+         "release" : 1.7,
+         "memory" : 256,
+         "base" : "ubuntu14lts",
+         "title" : "Syncthing",
+         "description" : "Open, trustworthy, and decentralized replacement for proprietary sync and cloud services.",
+         "ports" : [
+            { "protocol" : "tcp", "port" : 22000 },
+            { "protocol" : "tcp", "port" : 21025 }
+         ],
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/syncthing/latest.png",
+         "vendor_data" : "#!/bin/bash\nwget https://raw.githubusercontent.com/portalplatform/apps/master/syncthing/latest.sh && bash -x ./latest.sh\n",
+         "homepage_url" : "https://syncthing.net/"
+      },
+      {
+         "id" : "etherpad",
+         "release" : 1.7,
+         "memory" : 384,
+         "base" : "ubuntu14lts",
+         "title" : "Etherpad",
+         "description" : "A highly customizable open-source online text editor providing collaborative editing in real-time.",
+         "paths" : [
+            { "uri" : "/etherpad/" }
+         ],
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/etherpad/latest.png",
+         "vendor_data" : "#!/bin/bash\ncurl https://raw.githubusercontent.com/portalplatform/apps/master/etherpad/latest.sh > install.sh && bash -x ./install.sh\n",
+         "homepage_url" : "http://etherpad.org/"
+      },
+      {
+         "id" : "ghost",
+         "release" : 1.9,
+         "memory" : 384,
+         "base" : "ubuntu14lts",
+         "title" : "Ghost",
+         "description" : "A simple, powerful publishing platform that allows you to share your stories with the world.",
+         "paths" : [
+            { "uri" : "/" }
+         ],
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/ghost/latest.png",
+         "vendor_data" : "#!/bin/bash\ncurl https://raw.githubusercontent.com/portalplatform/apps/master/ghost/latest.sh > install.sh && bash -x ./install.sh\n",
+         "homepage_url" : "https://github.com/tryghost/Ghost"
+      },
+      {
+         "id" : "pvoip",
+         "release" : 1.7,
+         "memory" : 256,
+         "base" : "ubuntu14lts",
+         "title" : "Mumble",
+         "description" : "Open source, low-latency, high quality voice chat software.",
+         "ports" : [
+            { "protocol" : "tcp", "port" : 64738 },
+            { "protocol" : "udp", "port" : 64738 }
+         ],
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/pvoip/latest.png",
+         "vendor_data" : "#!/bin/bash\ncurl https://raw.githubusercontent.com/portalplatform/apps/master/pvoip/latest.sh > install.sh && bash -x ./install.sh\n",
+         "homepage_url" : "https://github.com/mumble-voip/mumble"
+      },
+      {
+         "id" : "pchat",
+         "release" : 1.7,
+         "memory" : 256,
+         "base" : "ubuntu14lts",
+         "title" : "Prosody",
+         "description" : "A free and open XMPP messaging and chat server.",
+         "ports" : [
+            { "protocol" : "tcp", "port" : 5222 },
+            { "protocol" : "tcp", "port" : 5269 }
+         ],
+         "paths" : [
+            { "uri" : "/http-bind" }
+         ],
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/pchat/latest.png",
+         "vendor_data" : "#!/bin/bash\ncurl https://raw.githubusercontent.com/portalplatform/apps/master/pchat/latest.sh > install.sh && bash -x ./install.sh\n",
+         "homepage_url" : "https://prosody.im/"
+      },
+      {
+         "id" : "pvpn",
+         "release" : 1.8,
+         "memory" : 256,
+         "base" : "ubuntu14lts",
+         "title" : "OpenVPN",
+         "description" : "Open-source VPN (Virtual Private Network) that encrypts data transfer on all your devices.",
+         "ports" : [
+            { "protocol" : "udp", "port" : 1194 },
+            { "protocol" : "tcp", "port" : 1194 }
+         ],
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/pvpn/latest.png",
+         "vendor_data" : "#!/bin/bash\ncurl https://raw.githubusercontent.com/portalplatform/apps/master/pvpn/latest.sh > install.sh && bash -x ./install.sh\n",
+         "homepage_url" : "https://openvpn.net/"
+      },
+      {
+         "id" : "pmail",
+         "release" : 1.7,
+         "memory" : 384,
+         "base" : "ubuntu14lts",
+         "title" : "Email Server",
+         "description" : "A simple email server with SMTP and IMAP support, powered by Postfix and Dovecot. Compatible with mobile and desktop email clients.",
+         "ports" : [
+            { "protocol" : "tcp", "port" : 25 },
+            { "protocol" : "tcp", "port" : 587 },
+            { "protocol" : "tcp", "port" : 993 }
+         ],
+         "icon_url" : "https://raw.githubusercontent.com/portalplatform/apps/master/pmail/latest.png",
+         "vendor_data" : "#!/bin/bash\ncurl https://raw.githubusercontent.com/portalplatform/apps/master/pmail/latest.sh > install.sh && bash -x ./install.sh\n",
+         "homepage_url" : "https://github.com/portalplatform/apps/tree/master/pmail"
+      }
    ]
 }
